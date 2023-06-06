@@ -95,30 +95,97 @@
 //
 // fib(1);
 
+//
+// function fib(num) {
+// 	if (typeof(num) !== 'number' || num <= 0 || !Number.isInteger(num)) {
+// 		return "";
+// 	}
+//
+// 	let result = '';
+// 	let first = 0;
+// 	let second = 1;
+//
+// 	for (let i = 0; i < num; i++) {
+// 		if (i + 1 === num) {
+// 			result += `${first}`;
+// 			// Без пробела в конце
+// 		} else {
+// 			result += `${first} `;
+// 		}
+//
+// 		let third = first + second;
+// 		first = second;
+// 		second = third;
+// 	}
+// 	console.log(result)
+// 	return result;
+// }
+//
+// fib(1)
 
-function fib(num) {
-	if (typeof(num) !== 'number' || num <= 0 || !Number.isInteger(num)) {
-		return "";
-	}
-	
-	let result = '';
-	let first = 0;
-	let second = 1;
-	
-	for (let i = 0; i < num; i++) {
-		if (i + 1 === num) {
-			result += `${first}`;
-			// Без пробела в конце
-		} else {
-			result += `${first} `;
-		}
+// 3) Создайте метод showAgeAndLangs внутри объекта personalPlanPeter. При его вызове метод будет принимать в себя объект и
+// возвращать строку в нужном виде.	Пример:
+// personalPlanPeter.showAgeAndLangs(personalPlanPeter)=> 'Мне 29 и я владею языками: RU ENG'
+//
+// Заметьте, что возраст и языки подставляются автоматически из объекта, а языки всегда в верхнем регистре
+// (большими буквами). Если данные в объекте поменяются, то и сообщение тоже изменится.
+
+const personalPlanPeter = {
+	name: "Peter",
+	age: "29",
+	skills: {
+		languages: ['ru', 'eng'],
+		programmingLangs: {
+			js: '20%',
+			php: '10%',
+			
+		},
+		exp: '1 month'
+	},
+	showAgeAndLangs(plan) {
+		let strInformation = '';
+		let str = '';
+		let {age} = plan;
+		let {languages} = plan.skills;
 		
-		let third = first + second;
-		first = second;
-		second = third;
+		languages.forEach(function (lang) {
+			str += `${lang.toUpperCase()} `;
+		});
+		
+		
+		// console.log(languages);
+		// for (let planKey in plan.skills.languages) {
+		// 	str += ` ${plan.skills.languages[planKey]}`
+		// 	console.log(str.toUpperCase());
+		// }
+		
+		strInformation = `Мне ${age} и я владею языками: ${str} `;
+		console.log(strInformation);
+		return strInformation;
 	}
-	console.log(result)
-	return result;
-}
+};
 
-fib(1)
+personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+
+
+// function showExperience(plan) {
+// 	let {skills:{exp}}=plan;
+// 	console.log(exp);
+// 	return exp;
+// }
+// showExperience(personalPlanPeter);
+
+
+// function showProgrammingLangs(plan) {
+// 	if (plan.skills.programmingLangs === undefined) {
+// 		return '';
+// 	}
+// 	let progLang = '';
+// 	for (let planKey in plan.skills.programmingLangs) {
+// 		progLang += `Язык ${planKey} изучен на ${plan.skills.programmingLangs[planKey]}\n`;
+// 		console.log(progLang);
+// 	}
+// 	return progLang;
+// }
+//
+// showProgrammingLangs(personalPlanPeter)
